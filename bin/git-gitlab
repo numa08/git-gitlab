@@ -1,3 +1,16 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 require 'git/gitlab'
+require "thor"
+
+class GitGitlabCLI < Thor
+	def self.start
+		gitlab = GitlabKernel.new
+		gitlab.authorize
+
+		super
+	end
+end
+
+GitGitlabCLI.start
