@@ -11,6 +11,27 @@ class GitGitlabCLI < Thor
 
 		super
 	end
+
+	desc "merge SOURCE TARGET --assign ${ASSING}", "create mergerequest SOURCE to TARGET. assign to ${ASSING}"
+	option :assign
+	def merge(source = nil, target = nil)
+		gitlab = GitlabKernel.new
+		title = source
+		assign = options[:assign]
+		begin
+			url = if target == nil
+				gitlab.create_merge_request(title, assign, source)
+			else
+				gitlab.create_merge_request(title, assign, source, target)
+			end
+		rescue GitlabKernel::Error::MergeRequestError => e
+			puts("Failed Create Merge Request")
+			puts("Please check your command's argument ,options and already exists mergerequests...")
+			raise e
+		end
+		puts("created mergerequest at")
+		puts(url)
+	end
 end
 
 GitGitlabCLI.start
