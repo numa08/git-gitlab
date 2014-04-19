@@ -5,24 +5,18 @@ require 'git/gitlab'
 require "thor"
 
 class GitGitlabCLI < Thor
-	def self.start
-		gitlab = GitlabKernel.new
-		gitlab.authorize
-
-		super
-	end
+	@@gitlab = GitlabKernel.new
 
 	desc "merge SOURCE TARGET --assign ${ASSING}", "create mergerequest SOURCE to TARGET. assign to ${ASSING}"
 	option :assign
 	def merge(source = nil, target = nil)
-		gitlab = GitlabKernel.new
 		title = source
 		assign = options[:assign]
 		begin
 			url = if target == nil
-				gitlab.create_merge_request(title, assign, source)
+				@@gitlab.create_merge_request(title, assign, source)
 			else
-				gitlab.create_merge_request(title, assign, source, target)
+				@@gitlab.create_merge_request(title, assign, source, target)
 			end
 		rescue GitlabKernel::Error::MergeRequestError => e
 			puts("Failed Create Merge Request")
@@ -31,6 +25,13 @@ class GitGitlabCLI < Thor
 		end
 		puts("created mergerequest at")
 		puts(url)
+	end
+
+	def help
+		user = @@gitlab.authorize
+		puts("You are #{user.username}")		
+		puts("Gitlab is #{Gitlab.endpoint}")
+		super
 	end
 end
 

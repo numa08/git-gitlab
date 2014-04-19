@@ -32,9 +32,7 @@ module GitlabApi
 	end
 
 	def authorize
-		user = @client.user
-		puts("You are #{user.username}")		
-		puts("Gitlab is #{Gitlab.endpoint}")
+		@client.user
 	end
 
 	def create_merge_request(title, assign, source, target = "master")
