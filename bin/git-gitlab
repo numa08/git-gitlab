@@ -27,6 +27,25 @@ class GitGitlabCLI < Thor
 		puts(url)
 	end
 
+	desc "issue ID", "show issue which has ID"
+	def issue(id)
+		begin
+			issue = @@gitlab.issue(id)
+		rescue GitlabKernel::Error::IssueNotFound => e
+			puts("Could not find \##{id} issue!!")
+			exit 1
+		end
+
+		puts("\##{issue.iid}")
+		puts("title      : #{issue.title}")
+		puts("description: #{issue.description}")
+		puts("label      : #{issue.labels.join(',')}")
+		puts("state      : #{issue.state}")
+		if issue.assignee != nil
+			puts("assignee   : #{issue.assignee.username}")
+		end
+	end
+
 	def help
 		user = @@gitlab.authorize
 		puts("You are #{user.username}")		
