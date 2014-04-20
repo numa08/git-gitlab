@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["n511287@gmail.com"]
   spec.description   = "Gitlab Command line interface"
   spec.summary       = "git-gitlab command line"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/numa08/git-gitlab"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
