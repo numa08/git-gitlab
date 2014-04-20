@@ -1,5 +1,7 @@
 # Git::Gitlab
 
+[日本語](https://github.com/numa08/git-gitlab/blob/master/README_ja.md)
+
 Command line tool for [Gitlab](https://www.gitlab.com/)
 
 ## Installation
