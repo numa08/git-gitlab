@@ -1,6 +1,6 @@
 # Git::Gitlab
 
-TODO: Write a gem description
+Command line tool for [Gitlab](https://www.gitlab.com/)
 
 ## Installation
 
@@ -18,7 +18,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Set up
+
+Config some setting
+
+	git config --global gitlab.url http://gitlab.example.com/
+	git config --gloabl gitlab.token GITLAB_SECRET_TOKEN
+	git config gitlab.projectid GITLAB_PROJECTID
+
+### Let' run and Confirm setting
+
+	git gitlab
+
+### Create Merge Request
+
+	git gitlab merge SOURCE_BRANCH TARGET_BRANCH --assign USER_NAME
+
+### Show Issue by ID
+
+	git gitlab issue ISSUE_ID
 
 ## Contributing
 
