@@ -1,4 +1,5 @@
 require "git/gitlab/version"
+require "git/gitlab/issue"
 require "git/error"
 require "gitlab"
 require "grit"
@@ -81,4 +82,5 @@ end
 
 class GitlabKernel
 	include GitlabApi
+	include Issue
 end
