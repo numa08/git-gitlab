@@ -28,10 +28,17 @@ class GitGitlabCLI < Thor
 	end
 
 	desc "issue ID", "show issue which has ID"
-	def issue(id)
+	option :all, :type => :boolean
+	def issue(id = nil)
+		if id == nil
+			issues = @@gitlab.issues(options[:all])
+			result = issues.map { |i| "\##{i.iid}, #{i.title}" }.join("\n")
+			puts(result)
+			exit 0
+		end
 		begin
 			issue = @@gitlab.issue(id)
-		rescue GitlabKernel::Error::IssueNotFound => e
+		rescue GitlabApi::Error::IssueNotFound => e
 			puts("Could not find \##{id} issue!!")
 			exit 1
 		end
