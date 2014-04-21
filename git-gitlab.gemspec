@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "thor" , "~> 0.19.1"
   spec.add_development_dependency "gitlab", "~> 3.0.0"
   spec.add_development_dependency "grit", "~> 2.5.0"
+  spec.add_development_dependency "rspec", "~> 2.14.1"
 end
