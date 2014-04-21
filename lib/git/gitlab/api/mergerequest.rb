@@ -39,7 +39,7 @@ class GitlabApi::ApiClient
 					@client.create_merge_request(pid, mr_title, :source_branch => mr_source, :target_branch => target)
 				end
 			rescue Gitlab::Error::NotFound => e
-				raise Error::MergeRequestError, "Failed Create Merge Request"
+				raise GitlabApi::Error::MergeRequestError, "Failed Create Merge Request"
 			end
 
 			project_url = @client.project(pid).web_url
