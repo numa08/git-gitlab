@@ -74,7 +74,7 @@ module GitlabApi
 		end
 
 		project_url = @client.project(pid).web_url
-		mergerequest_url = project_url + "/merge_requests/" + mergerequest.id.to_s
+		mergerequest_url = project_url + "/merge_requests/" + mergerequest.iid.to_s
 
 		mergerequest_url
 	end
