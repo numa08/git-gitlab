@@ -25,7 +25,7 @@ Or install it yourself as:
 Config some setting
 
 	git config --global gitlab.url http://gitlab.example.com/
-	git config --gloabl gitlab.token GITLAB_SECRET_TOKEN
+	git config --global gitlab.token GITLAB_SECRET_TOKEN
 	git config gitlab.projectid GITLAB_PROJECTID
 
 ### Let' run and Confirm setting
