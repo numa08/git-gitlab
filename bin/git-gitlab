@@ -30,10 +30,14 @@ class GitGitlabCLI < Thor
 			else
 				@@gitlab.create_merge_request(title, assign, source, target)
 			end
-		rescue GitlabKernel::Error::MergeRequestError => e
+		rescue GitlabApi::Error::MergeRequestError => e
 			puts("Failed Create Merge Request")
 			puts("Please check your command's argument ,options and already exists mergerequests...")
-			raise e
+			puts(e.message)
+			exit 1
+		rescue GitlabApi::Error::ProjectIdNotFound => e
+			puts(e.message)
+			exit 1
 		end
 		puts("created mergerequest at")
 		puts(url)
@@ -52,6 +56,10 @@ class GitGitlabCLI < Thor
 			issue = @@gitlab.issue(id)
 		rescue GitlabApi::Error::IssueNotFound => e
 			puts("Could not find \##{id} issue!!")
+			puts(e.message)
+			exit 1
+		rescue GitlabApi::Error::ProjectIdNotFound => e
+			puts(e.message)
 			exit 1
 		end
 

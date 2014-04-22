@@ -9,11 +9,7 @@ class GitlabApi::ApiClient
 		PAGE = 1
 
 		def create_merge_request(title, assign, source, target = "master")
-			pid = @repository.config["gitlab.projectid"].to_i
-
-			if pid == 0
-				raise "Please set 'git config gitlab.projectid ${Gitlab Project id}'"
-			end
+			pid = project_id
 
 			mr_title = if title == nil
 				@repository.head.name
@@ -52,11 +48,7 @@ class GitlabApi::ApiClient
 		end
 
 		def mergerequests
-			pid = @repository.config["gitlab.projectid"].to_i
-
-			if pid == 0
-				raise "Please set 'git config gitlab.projectid ${Gitlab Project id}'"
-			end
+			pid = project_id
 
 			all_mergerequests(pid, PAGE, PER_PAGE).select { |m|
 				m.state == "opened"

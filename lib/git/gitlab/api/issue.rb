@@ -10,11 +10,7 @@ class GitlabApi::ApiClient
 		PAGE = 1
 
 		def issue(id)
-			pid = @repository.config["gitlab.projectid"].to_i
-
-			if pid == 0
-				raise "Please set 'git config gitlab.projectid ${Gitlab Project id}'"
-			end
+			pid = project_id
 
 			issues = all_issues(pid, PAGE, PER_PAGE)
 
@@ -30,11 +26,7 @@ class GitlabApi::ApiClient
 		end
 
 		def issues(with_closed)
-			pid = @repository.config["gitlab.projectid"].to_i
-
-			if pid == 0
-				raise "Please set 'git config gitlab.projectid ${Gitlab Project id}'"
-			end
+			pid = project_id
 
 			issues = all_issues(pid, PAGE, PER_PAGE)
 			if with_closed
