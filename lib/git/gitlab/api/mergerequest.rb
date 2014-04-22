@@ -5,6 +5,9 @@ require "git/error"
 class GitlabApi::ApiClient
 	
 	module Mergerequest
+		PER_PAGE = 100
+		PAGE = 1
+
 		def create_merge_request(title, assign, source, target = "master")
 			pid = @repository.config["gitlab.projectid"].to_i
 
@@ -46,6 +49,36 @@ class GitlabApi::ApiClient
 			mergerequest_url = project_url + "/merge_requests/" + mergerequest.iid.to_s
 
 			mergerequest_url
+		end
+
+		def mergerequests
+			pid = @repository.config["gitlab.projectid"].to_i
+
+			if pid == 0
+				raise "Please set 'git config gitlab.projectid ${Gitlab Project id}'"
+			end
+
+			all_mergerequests(pid, PAGE, PER_PAGE).select { |m|
+				m.state == "opened"
+			}
+		end
+
+		def all_mergerequests(pid, page, per_page)
+			def _mergerequests(list, pid, page, per_page)
+				m = @client.merge_requests(pid, :page => page, :per_page => per_page)
+				if m.count < per_page
+					list + m
+				else
+					_mergerequests(list + m, pid, page +  1, per_page)
+				end
+			end
+
+			m = @client.merge_requests(pid, :page => page, :per_page => per_page)
+			if m.count < per_page
+				m
+			else
+				_mergerequests(m, pid, page + 1, per_page)
+			end
 		end
 	end
 end
