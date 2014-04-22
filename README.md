@@ -26,7 +26,7 @@ Config some setting
 
 	git config --global gitlab.url http://gitlab.example.com/
 	git config --global gitlab.token GITLAB_SECRET_TOKEN
-	git config gitlab.projectid GITLAB_PROJECTID
+	git config gitlab.project NAMESPACE/PROJECT
 
 ### Let' run and Confirm setting
 
@@ -35,6 +35,10 @@ Config some setting
 ### Create Merge Request
 
 	git gitlab merge SOURCE_BRANCH TARGET_BRANCH --assign USER_NAME
+
+### Get Mergerequest list
+
+	git gitlab merge --list
 
 ### Show Issue by ID
 

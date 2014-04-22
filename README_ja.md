@@ -15,8 +15,8 @@ Ruby関連のツールをインストールして、次のコマンドを実行�
 次のようにGitの設定を行います
 
 	git config --global gitlab.url http://gitlab.example.com/
-	git config --gloabl gitlab.token GITLAB_SECRET_TOKEN
-	git config gitlab.projectid GITLAB_PROJECTID
+	git config --glolab gitlab.token GITLAB_SECRET_TOKEN
+	git config gitlab.project NAMESPACE/PROJECT
 
 ### 設定の確認を行います
 
@@ -25,6 +25,10 @@ Ruby関連のツールをインストールして、次のコマンドを実行�
 ### マージリクエストを作ります
 
 	git gitlab merge SOURCE_BRANCH TARGET_BRANCH --assign USER_NAME
+
+### OpenなMergerequestを全て取得します
+
+	git gitlab merge --list
 
 ### IDでイシューを検索し、表示します
 
