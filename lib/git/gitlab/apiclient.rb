@@ -1,7 +1,8 @@
 require "git/gitlab/version"
+require "git/error"
 require "gitlab"
 require "grit"
-
+require "uri"
 
 module GitlabApi
 	class ApiClient
@@ -30,6 +31,25 @@ module GitlabApi
 			end
 
 			@client = Gitlab.client
+		end
+
+		def project_id
+			pid = if @repository.config.keys.include? "gitlab.projectid"
+					@repository.config["gitlab.projectid"].to_i
+				else
+					@repository.config["gitlab.project"]
+				end
+
+			if pid == nil
+				raise "Please set 'git config gitlab.projectid ${Gitlab Project id}' of git config gitlab.project ${NAMESPACE/PROJECT}"
+			end
+
+			begin
+				@client.project( URI.encode_www_form_component(pid.to_s)).id
+			rescue Gitlab::Error::NotFound => e
+				raise GitlabApi::Error::ProjectIdNotFound, "Can not find #{pid} Project."
+			end
+
 		end
 	end
 end
