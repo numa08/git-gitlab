@@ -55,6 +55,18 @@ class GitlabApi::ApiClient
 			}
 		end
 
+		def mergerequest(id)
+			pid = project_id
+
+			begin
+				mr = @client.merge_request(pid, id)
+			rescue Gitlab::Error::NotFound => e
+				raise GitlabApi::Error::MergeRequestError, "Can not find #{id} mergerequest"
+			end
+			mr
+		end
+
+
 		def all_mergerequests(pid, page, per_page)
 			def _mergerequests(list, pid, page, per_page)
 				m = @client.merge_requests(pid, :page => page, :per_page => per_page)
