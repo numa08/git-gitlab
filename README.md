@@ -28,6 +28,10 @@ Config some setting
 	git config --global gitlab.token GITLAB_SECRET_TOKEN
 	git config gitlab.project NAMESPACE/PROJECT
 
+if your remote repository is not origin
+
+	git config gitlab.remote REMOTE
+
 ### Let' run and Confirm setting
 
 	git gitlab
@@ -43,6 +47,10 @@ Config some setting
 ### Show Issue by ID
 
 	git gitlab issue ISSUE_ID
+
+### Code Review
+	
+	git gitlab review MERGEREQUEST_ID
 
 ## Contributing
 

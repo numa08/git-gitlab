@@ -18,6 +18,10 @@ Ruby関連のツールをインストールして、次のコマンドを実行�
 	git config --glolab gitlab.token GITLAB_SECRET_TOKEN
 	git config gitlab.project NAMESPACE/PROJECT
 
+もしもGitlabのリモートリポジトリがoriginでない場合には
+
+	git config gitlab.remote REMOTE
+
 ### 設定の確認を行います
 
 	git gitlab
@@ -33,6 +37,10 @@ Ruby関連のツールをインストールして、次のコマンドを実行�
 ### IDでイシューを検索し、表示します
 
 	git gitlab issue ISSUE_ID
+
+### Mergeリクエストのレビューを行います
+
+	git gitlab review MERGEREQUEST_ID
 
 ## 貢献するには
 
