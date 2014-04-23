@@ -33,6 +33,14 @@ module GitlabApi
 			@client = Gitlab.client
 		end
 
+		def remote
+			if @repository.config.keys.include? "gitlab.remote"
+				@repository.config["gitlab.remote"]
+			else
+				"origin"
+			end
+		end
+
 		def project_id
 			pid = if @repository.config.keys.include? "gitlab.projectid"
 					@repository.config["gitlab.projectid"].to_i
