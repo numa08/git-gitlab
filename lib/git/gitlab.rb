@@ -10,11 +10,11 @@ require "gitlab"
 require "grit"
 
 class GitlabKernel < GitlabApi::ApiClient
-	include GitlabApi::ApiClient::Issue
-	include GitlabApi::ApiClient::Authorize
-	include GitlabApi::ApiClient::Mergerequest
+  include GitlabApi::ApiClient::Issue
+  include GitlabApi::ApiClient::Authorize
+  include GitlabApi::ApiClient::Mergerequest
 end
 
 class GitlabLocalRepository < GitlabLocal
-	include GitlabLocal::CodeReview
+  include GitlabLocal::CodeReview
 end

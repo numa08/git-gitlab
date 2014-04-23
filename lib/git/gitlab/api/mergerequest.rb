@@ -3,86 +3,86 @@ require "grit"
 require "git/error"
 
 class GitlabApi::ApiClient
-	
-	module Mergerequest
-		PER_PAGE = 100
-		PAGE = 1
 
-		def create_merge_request(title, assign, source, target = "master")
-			pid = project_id
+  module Mergerequest
+    PER_PAGE = 100
+    PAGE = 1
 
-			mr_title = if title == nil
-				@repository.head.name
-			else
-				title
-			end
+    def create_merge_request(title, assign, source, target = "master")
+      pid = project_id
 
-			mr_source = if source == nil
-				@repository.head.name
-			else
-				source
-			end
+      mr_title = if title == nil
+        @repository.head.name
+      else
+        title
+      end
 
-			assignee_id = if assign == nil
-				0
-			else
-				@client.users.select { |user|
-					user.username == assign
-				}[0].id
-			end
+      mr_source = if source == nil
+        @repository.head.name
+      else
+        source
+      end
 
-			begin
-				mergerequest = if assignee_id > 0
-					@client.create_merge_request(pid, mr_title, :source_branch => mr_source, :target_branch => target, :assignee_id => assignee_id)
-				else
-					@client.create_merge_request(pid, mr_title, :source_branch => mr_source, :target_branch => target)
-				end
-			rescue Gitlab::Error::NotFound => e
-				raise GitlabApi::Error::MergeRequestError, "Failed Create Merge Request"
-			end
+      assignee_id = if assign == nil
+        0
+      else
+        @client.users.select { |user|
+          user.username == assign
+        }[0].id
+      end
 
-			project_url = @client.project(pid).web_url
-			mergerequest_url = project_url + "/merge_requests/" + mergerequest.iid.to_s
+      begin
+        mergerequest = if assignee_id > 0
+          @client.create_merge_request(pid, mr_title, :source_branch => mr_source, :target_branch => target, :assignee_id => assignee_id)
+        else
+          @client.create_merge_request(pid, mr_title, :source_branch => mr_source, :target_branch => target)
+        end
+      rescue Gitlab::Error::NotFound => e
+        raise GitlabApi::Error::MergeRequestError, "Failed Create Merge Request"
+      end
 
-			mergerequest_url
-		end
+      project_url = @client.project(pid).web_url
+      mergerequest_url = project_url + "/merge_requests/" + mergerequest.iid.to_s
 
-		def mergerequests
-			pid = project_id
+      mergerequest_url
+    end
 
-			all_mergerequests(pid, PAGE, PER_PAGE).select { |m|
-				m.state == "opened"
-			}
-		end
+    def mergerequests
+      pid = project_id
 
-		def mergerequest(id)
-			pid = project_id
+      all_mergerequests(pid, PAGE, PER_PAGE).select { |m|
+        m.state == "opened"
+      }
+    end
 
-			begin
-				mr = @client.merge_request(pid, id)
-			rescue Gitlab::Error::NotFound => e
-				raise GitlabApi::Error::MergeRequestError, "Can not find #{id} mergerequest"
-			end
-			mr
-		end
+    def mergerequest(id)
+      pid = project_id
+
+      begin
+        mr = @client.merge_request(pid, id)
+      rescue Gitlab::Error::NotFound => e
+        raise GitlabApi::Error::MergeRequestError, "Can not find #{id} mergerequest"
+      end
+      mr
+    end
 
 
-		def all_mergerequests(pid, page, per_page)
-			def _mergerequests(list, pid, page, per_page)
-				m = @client.merge_requests(pid, :page => page, :per_page => per_page)
-				if m.count < per_page
-					list + m
-				else
-					_mergerequests(list + m, pid, page +  1, per_page)
-				end
-			end
+    def all_mergerequests(pid, page, per_page)
+      def _mergerequests(list, pid, page, per_page)
+        m = @client.merge_requests(pid, :page => page, :per_page => per_page)
+        if m.count < per_page
+          list + m
+        else
+          _mergerequests(list + m, pid, page +  1, per_page)
+        end
+      end
 
-			m = @client.merge_requests(pid, :page => page, :per_page => per_page)
-			if m.count < per_page
-				m
-			else
-				_mergerequests(m, pid, page + 1, per_page)
-			end
-		end
-	end
+      m = @client.merge_requests(pid, :page => page, :per_page => per_page)
+      if m.count < per_page
+        m
+      else
+        _mergerequests(m, pid, page + 1, per_page)
+      end
+    end
+  end
 end
