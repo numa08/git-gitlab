@@ -8,7 +8,13 @@ require 'thor'
 # Gitlab Commandline interface
 #
 class GitGitlabCLI < Thor
-  @gitlab = GitlabKernel.new
+
+  attr_reader :gitlab
+
+  def initialize(args, opts, config)
+    @gitlab = GitlabKernel.new
+    super(args, opts, config)
+  end
 
   desc "merge SOURCE TARGET --assign ${ASSING}", "create mergerequest SOURCE to TARGET. assign to ${ASSING}"
   long_desc <<-LONGDESC
