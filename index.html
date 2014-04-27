@@ -1,93 +1,131 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Git-gitlab : gitlab command line interface" />
 
-  <title>Git-gitlab</title>
-  <meta name="description" content="gitlab command line interface">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Git-gitlab</title>
+  </head>
 
-</head>
+  <body>
 
-<body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/numa08/git-gitlab">View on GitHub</a>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title">Git-gitlab</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">gitlab command line interface</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/numa08/git-gitlab/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/numa08/git-gitlab/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/numa08/git-gitlab" class="code">View Git-gitlab on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          <h1 id="project_title">Git-gitlab</h1>
+          <h2 id="project_tagline">gitlab command line interface</h2>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/numa08/git-gitlab/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/numa08/git-gitlab/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h3>
+
+<p>Git-gitlab is git's subcommand for <a href="https://www.gitlab.com/">Gitlab</a>.You can operate some gitlab feature(so you don't use browser access).</p>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>Git-gitlab is managed by gem what is ruby's package management tool.So you are setting for use gem command, and then input below</p>
+
+<pre><code>gem install git-gitlab
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>
+<a name="getting-start" class="anchor" href="#getting-start"><span class="octicon octicon-link"></span></a>Getting start</h3>
+
+<p>first, access to gitlab configure</p>
+
+<pre><code>git config --global gitlab.url http://gitlab.example.com/
+git config --global gitlab.token GITLAB_SECRET_TOKEN
+</code></pre>
+
+<p>next. veryfi</p>
+
+<pre><code>git gitlab
+</code></pre>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="using" class="anchor" href="#using"><span class="octicon octicon-link"></span></a>Using</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>move to your local repository what is managed by gitlab.and</p>
+
+<pre><code>git config gitlab.project NAMESPACE/PROJECT
+</code></pre>
+
+<h4>
+<a name="get-all-openning-issue" class="anchor" href="#get-all-openning-issue"><span class="octicon octicon-link"></span></a>Get all openning issue</h4>
+
+<pre><code>git gitlab issue
+</code></pre>
+
+<h4>
+<a name="get-issue-detail" class="anchor" href="#get-issue-detail"><span class="octicon octicon-link"></span></a>Get issue detail</h4>
+
+<pre><code>git gitlab issue ISSUE_NUMBER
+</code></pre>
+
+<h4>
+<a name="get-all-openning-mergerequest" class="anchor" href="#get-all-openning-mergerequest"><span class="octicon octicon-link"></span></a>Get all openning mergerequest</h4>
+
+<pre><code>git gitlab merge
+</code></pre>
+
+<p>and create mergerequest</p>
+
+<pre><code>git gitlab merge SOURCE_BRANCH TARGET_BRANCH --assign NAME
+</code></pre>
+
+<h4>
+<a name="when-you-review-mergerequest" class="anchor" href="#when-you-review-mergerequest"><span class="octicon octicon-link"></span></a>When you review mergerequest</h4>
+
+<pre><code>git gitlab review MERGEREQUEST_ID
+</code></pre>
+
+<p>this command checkout your local repository to merged mergerequest.you can code review and run, debug, test.</p>
 
 <h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a name="some-configurations" class="anchor" href="#some-configurations"><span class="octicon octicon-link"></span></a>Some configurations</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>you can configure project id</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<pre><code>git config gitlab.projectid PROJECT_ID
+</code></pre>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>when you use pproject id, then git-gitlab doesn't search project so access is more first.</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>If you use not gloabl gitlab, then move to local repository and</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </article>
-      </div>
+<pre><code>git config gitlab.url http://gitlab.example.com/
+git config gitlab.token GITLAB_SECRET_TOKEN
+</code></pre>
+
+<p>you can access to specified gitlab</p>
+      </section>
     </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/numa08" class="avatar"><img src="https://avatars3.githubusercontent.com/u/937552?s=60" width="48" height="48"/></a> <a href="https://github.com/numa08">numa08</a> maintains <a href="https://github.com/numa08/git-gitlab">Git-gitlab</a></p>
 
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Git-gitlab maintained by <a href="https://github.com/numa08">numa08</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/numa08/git-gitlab/tarball/master" class="tar">tar</a><a href="https://github.com/numa08/git-gitlab/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
-
-            <script type="text/javascript">
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -98,5 +136,6 @@ $ git checkout gh-pages
             } catch(err) {}
           </script>
 
-</body>
+
+  </body>
 </html>
