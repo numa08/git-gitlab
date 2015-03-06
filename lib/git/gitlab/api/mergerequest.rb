@@ -23,12 +23,10 @@ class GitlabApi::ApiClient
         source
       end
 
-      assignee_id = if assign == nil
-        0
-      else
-        @client.users.select { |user|
-          user.username == assign
-        }[0].id
+      assignee_id = 0
+      if assign
+        user = @client.users(per_page: 9_999).find { |u| u.username == assign }
+        assignee_id = user.id if user
       end
 
       begin
