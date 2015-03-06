@@ -38,7 +38,7 @@ if your remote repository is not origin
 
 ### Create Merge Request
 
-	git gitlab merge SOURCE_BRANCH TARGET_BRANCH --assign USER_NAME
+	git gitlab merge SOURCE_BRANCH TARGET_BRANCH --assign USER_NAME --title MERGE_REQUEST_TITLE
 
 ### Get Mergerequest list
 
@@ -49,7 +49,7 @@ if your remote repository is not origin
 	git gitlab issue ISSUE_ID
 
 ### Code Review
-	
+
 	git gitlab review MERGEREQUEST_ID
 
 ## Contributing
