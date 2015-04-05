@@ -18,7 +18,7 @@ var Commands = []cli.Command{
 
 var commandGit_clone = cli.Command{
 	Name:  "git-clone",
-	Usage: "",
+	Usage: "clone from remote repository on GitLab.",
 	Description: `
 `,
 	Action: doGit_clone,
@@ -26,7 +26,7 @@ var commandGit_clone = cli.Command{
 
 var commandGit_merge_request = cli.Command{
 	Name:  "git-merge-request",
-	Usage: "",
+	Usage: "create merge request.",
 	Description: `
 `,
 	Action: doGit_merge_request,
@@ -34,7 +34,7 @@ var commandGit_merge_request = cli.Command{
 
 var commandGit_merge = cli.Command{
 	Name:  "git-merge",
-	Usage: "",
+	Usage: "merge specified merge request.",
 	Description: `
 `,
 	Action: doGit_merge,
@@ -42,7 +42,7 @@ var commandGit_merge = cli.Command{
 
 var commandGit_show = cli.Command{
 	Name:  "git-show",
-	Usage: "",
+	Usage: "show issue, merge request, wiki and repository",
 	Description: `
 `,
 	Action: doGit_show,
