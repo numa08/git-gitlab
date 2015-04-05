@@ -8,44 +8,44 @@ import (
 )
 
 var Commands = []cli.Command{
-	commandGit_clone,
-    commandGit_merge_request,
-    commandGit_merge,
-    commandGit_show,
+	command_clone,
+    command_merge_request,
+    command_merge,
+    command_show,
     
 }
 
 
-var commandGit_clone = cli.Command{
-	Name:  "git-clone",
+var command_clone = cli.Command{
+	Name:  "clone",
 	Usage: "clone from remote repository on GitLab.",
 	Description: `
 `,
-	Action: doGit_clone,
+	Action: do_clone,
 }
 
-var commandGit_merge_request = cli.Command{
-	Name:  "git-merge-request",
+var command_merge_request = cli.Command{
+	Name:  "merge-request",
 	Usage: "create merge request.",
 	Description: `
 `,
-	Action: doGit_merge_request,
+	Action: do_merge_request,
 }
 
-var commandGit_merge = cli.Command{
-	Name:  "git-merge",
+var command_merge = cli.Command{
+	Name:  "merge",
 	Usage: "merge specified merge request.",
 	Description: `
 `,
-	Action: doGit_merge,
+	Action: do_merge,
 }
 
-var commandGit_show = cli.Command{
-	Name:  "git-show",
+var command_show = cli.Command{
+	Name:  "show",
 	Usage: "show issue, merge request, wiki and repository",
 	Description: `
 `,
-	Action: doGit_show,
+	Action: do_show,
 }
 
 
@@ -62,16 +62,16 @@ func assert(err error) {
 }
 
 
-func doGit_clone(c *cli.Context) {
+func do_clone(c *cli.Context) {
 }
 
-func doGit_merge_request(c *cli.Context) {
+func do_merge_request(c *cli.Context) {
 }
 
-func doGit_merge(c *cli.Context) {
+func do_merge(c *cli.Context) {
 }
 
-func doGit_show(c *cli.Context) {
+func do_show(c *cli.Context) {
 }
 
 
