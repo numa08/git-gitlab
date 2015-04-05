@@ -1,61 +1,66 @@
-# Git::Gitlab
+# git + lab = gitlab
 
-[日本語](https://github.com/numa08/git-gitlab/blob/master/README_ja.md)
+lab is a command line tool that wrap `git` in order to extend it with extra features and commands that make working with GitLab easier.
 
-Command line tool for [Gitlab](https://www.gitlab.com/)
+
+~~~sh
+$ git lab clone numa08/dejiko
+
+# extends to:
+$ git clone git://${gitlab.url}/numa08/dejiko.git
+~~~
 
 ## Installation
 
-Add this line to your application's Gemfile:
+TODO
 
-    gem 'git-gitlab'
+## Configure
 
-And then execute:
+Set the value of Gitlab-url and token.
 
-    $ bundle
+~~~sh
+$ git config --global gitlab.url http://gitlab.example.com
 
-Or install it yourself as:
+$ git config --global gitlab.token GITLAB_SECRET_TOKEN
+~~~
 
-    $ gem install git-gitlab
+then, set gitlab namespace and project.
 
-## Usage
+~~~sh
+$ git config gitlab.project [NAMESPACE]/[PROJECT]
+~~~
 
-### Set up
+## Commands
 
-Config some setting
+### git clone
 
-	git config --global gitlab.url http://gitlab.example.com/
-	git config --global gitlab.token GITLAB_SECRET_TOKEN
-	git config gitlab.project NAMESPACE/PROJECT
+~~~sh
+$ git lab clone numa08/dejiko
+> git clone git://{gitlab.url}/numa08/dejiko
 
-if your remote repository is not origin
+$ git lab clone -p numa08/dejiko
+> git clone git@{gitlab.url}/:numa08/dejiko
+~~~
 
-	git config gitlab.remote REMOTE
+### merge request
 
-### Let' run and Confirm setting
+~~~sh
+$ git lab merge-request -b basebranch -h headbranch
+>open text editor to edit title and body
+>open pull request on GitLab
 
-	git gitlab
+$ git merge-request -b forked:branch -h origin:branch -m "Fix issue #xxx"
+~~~
 
-### Create Merge Request
+### git merge
 
-	git gitlab merge SOURCE_BRANCH TARGET_BRANCH --assign USER_NAME
+~~~sh
+$ git lab merge [MERGE_REQUEST_ID]
+~~~
 
-### Get Mergerequest list
+### git show
 
-	git gitlab merge --list
-
-### Show Issue by ID
-
-	git gitlab issue ISSUE_ID
-
-### Code Review
-	
-	git gitlab review MERGEREQUEST_ID
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+~~~sh
+$ git lab show -- issue/10
+> open http://gitlab.example.com/NAMESPACE/PROJECT/issues/10
+~~~
