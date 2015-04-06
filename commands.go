@@ -63,6 +63,9 @@ func assert(err error) {
 
 
 func do_clone(c *cli.Context) {
+	client = GitlabClient()
+	client.clone(path , destination)
+	client.config...
 }
 
 func do_merge_request(c *cli.Context) {
