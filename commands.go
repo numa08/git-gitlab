@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/codegangsta/cli"
+	"fmt"
 )
 
 var Commands = []cli.Command{
@@ -63,9 +64,18 @@ func assert(err error) {
 
 
 func do_clone(c *cli.Context) {
-	client = GitlabClient()
-	client.clone(path , destination)
-	client.config...
+	config, e := NewLocalGitConfig()
+	if e != nil {
+		fmt.Print(e.Error())
+		return
+	}
+	client, e := NewGitLabClient(config)
+	if e != nil {
+		fmt.Println(e.Error())
+	}
+	if client != nil {
+		fmt.Println(client)
+	}
 }
 
 func do_merge_request(c *cli.Context) {
