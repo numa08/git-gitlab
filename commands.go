@@ -19,7 +19,7 @@ var Commands = []cli.Command{
 
 var command_clone = cli.Command{
 	Name:  "clone",
-	Usage: "clone from remote repository on GitLab.",
+	Usage: "git lab clone <namescape/repository> [dir]",
 	Description: `
 `,
 	Action: do_clone,
@@ -64,17 +64,20 @@ func assert(err error) {
 
 
 func do_clone(c *cli.Context) {
-	config, e := NewLocalGitConfig()
+	remote := c.Args().Get(0)
+	local := c.Args().Get(1)
+	config, e := ConfigForCurrentDir()
 	if e != nil {
 		fmt.Print(e.Error())
 		return
 	}
 	client, e := NewGitLabClient(config)
+	ret, e := client.clone(remote, local)
 	if e != nil {
 		fmt.Println(e.Error())
 	}
 	if client != nil {
-		fmt.Println(client)
+		fmt.Println(ret)
 	}
 }
 
