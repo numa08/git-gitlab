@@ -1,6 +1,6 @@
 # git + lab = gitlab
 
-[![Build Status](https://travis-ci.org/numa08/git-gitlab.svg?branch=travis.ci)](https://travis-ci.org/numa08/git-gitlab)
+[![Build Status](https://travis-ci.org/numa08/git-gitlab.svg?branch=develop)](https://travis-ci.org/numa08/git-gitlab)
 
 lab is a command line tool that wrap `git` in order to extend it with extra features and commands that make working with GitLab easier.
 
