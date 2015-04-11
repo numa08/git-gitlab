@@ -69,6 +69,10 @@ func do_clone(c *cli.Context) {
 	config := NewGlobalGitConfig()
 
 	client, e := NewGitLabClient(config)
+	if e != nil {
+		fmt.Println(e.Error())
+		return
+	}
 	ret, e := client.clone(remote, local)
 	if e != nil {
 		fmt.Println(e.Error())

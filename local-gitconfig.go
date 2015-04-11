@@ -30,7 +30,6 @@ func (this *LocalGitConfig) Token() (string, error) {
 }
 
 func (this *LocalGitConfig) ApiPath() (string, error) {
-    host, e := this.Host()
-    apiPath := fmt.Sprintf("%s/api/v3", host)
-    return apiPath, e
+    apiPath := fmt.Sprintf("/api/v3")
+    return apiPath, nil
 }
