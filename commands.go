@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/codegangsta/cli"
+	"fmt"
 )
 
 var Commands = []cli.Command{
@@ -18,7 +19,7 @@ var Commands = []cli.Command{
 
 var command_clone = cli.Command{
 	Name:  "clone",
-	Usage: "clone from remote repository on GitLab.",
+	Usage: "git lab clone <namescape/repository> [dir]",
 	Description: `
 `,
 	Action: do_clone,
@@ -63,6 +64,22 @@ func assert(err error) {
 
 
 func do_clone(c *cli.Context) {
+	remote := c.Args().Get(0)
+	local := c.Args().Get(1)
+	config := NewGlobalGitConfig()
+
+	client, e := NewGitLabClient(config)
+	if e != nil {
+		fmt.Println(e.Error())
+		return
+	}
+	ret, e := client.clone(remote, local)
+	if e != nil {
+		fmt.Println(e.Error())
+	}
+	if client != nil {
+		fmt.Println(ret)
+	}
 }
 
 func do_merge_request(c *cli.Context) {
