@@ -66,11 +66,8 @@ func assert(err error) {
 func do_clone(c *cli.Context) {
 	remote := c.Args().Get(0)
 	local := c.Args().Get(1)
-	config, e := ConfigForCurrentDir()
-	if e != nil {
-		fmt.Print(e.Error())
-		return
-	}
+	config := NewGlobalGitConfig()
+
 	client, e := NewGitLabClient(config)
 	ret, e := client.clone(remote, local)
 	if e != nil {
