@@ -12,8 +12,17 @@ type GitLabClient struct {
 
 func NewGitLabClient(config GitConfig) (*GitLabClient, error) {
     host , e := config.Host()
+    if e != nil {
+        return nil, e
+    }
     path , e := config.ApiPath()
+    if e != nil {
+        return nil, e
+    }
     token , e := config.Token()
+    if e != nil {
+        return nil, e
+    }
     client := GitLabClient{
         GitLab: gogitlab.NewGitlab(host, path, token),
     }
