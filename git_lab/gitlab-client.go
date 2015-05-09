@@ -1,17 +1,18 @@
-package main
+package git_lab
 
 import (
     "github.com/plouc/go-gitlab-client"
     "strings"
     "fmt"
     "os/exec"
+    "github.com/numa08/git-gitlab/config"
 )
 
 type GitLabClient struct {
     GitLab *gogitlab.Gitlab
 }
 
-func NewGitLabClient(config GitConfig) (*GitLabClient, error) {
+func NewGitLabClient(config config.GitConfig) (*GitLabClient, error) {
     host , e := config.Host()
     if e != nil {
         return nil, e
@@ -30,7 +31,7 @@ func NewGitLabClient(config GitConfig) (*GitLabClient, error) {
     return &client, e
 }
 
-func (this *GitLabClient)clone (remote string, path string) (string, error) {
+func (this *GitLabClient)Clone (remote string, path string) (string, error) {
     if this == nil {
         return "", nil
     }

@@ -1,4 +1,4 @@
-package main
+package config
 import (
     "gopkg.in/libgit2/git2go.v22"
     "fmt"

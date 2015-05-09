@@ -6,6 +6,8 @@ import (
 
 	"github.com/codegangsta/cli"
 	"fmt"
+	"github.com/numa08/git-gitlab/config"
+	"github.com/numa08/git-gitlab/git_lab"
 )
 
 var Commands = []cli.Command{
@@ -66,14 +68,14 @@ func assert(err error) {
 func do_clone(c *cli.Context) {
 	remote := c.Args().Get(0)
 	local := c.Args().Get(1)
-	config := NewGlobalGitConfig()
+	config := config.NewGlobalGitConfig()
 
-	client, e := NewGitLabClient(config)
+	client, e := git_lab.NewGitLabClient(config)
 	if e != nil {
 		fmt.Println(e.Error())
 		return
 	}
-	ret, e := client.clone(remote, local)
+	ret, e := client.Clone(remote, local)
 	if e != nil {
 		fmt.Println(e.Error())
 	}
