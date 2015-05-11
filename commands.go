@@ -7,7 +7,7 @@ import (
 	"github.com/codegangsta/cli"
 	"fmt"
 	"github.com/numa08/git-gitlab/config"
-	"github.com/numa08/git-gitlab/git_lab"
+	"github.com/numa08/git-gitlab/gitlab"
 )
 
 var Commands = []cli.Command{
@@ -70,7 +70,7 @@ func do_clone(c *cli.Context) {
 	local := c.Args().Get(1)
 	config := config.NewGlobalGitConfig()
 
-	client, e := git_lab.NewGitLabClient(config)
+	client, e := gitlab.NewGitLabClient(config)
 	if e != nil {
 		fmt.Println(e.Error())
 		return

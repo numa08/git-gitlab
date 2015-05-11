@@ -1,4 +1,4 @@
-package git_lab
+package gitlab
 
 import (
     "github.com/plouc/go-gitlab-client"
