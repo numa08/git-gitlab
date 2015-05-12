@@ -4,6 +4,7 @@ import (
     "fmt"
     "strings"
     "os/exec"
+    "net/url"
 )
 
 func ConfigForCurrentDir() (GitConfig, error) {
@@ -25,10 +26,15 @@ func NewGlobalGitConfig() (*GlobalGitConfig) {
 }
 
 func (this *GlobalGitConfig) Host() (string, error) {
-    path, e := git.ConfigFindGlobal()
-    global, e := git.OpenOndisk(nil, path)
-    host, e := global.LookupString("gitlab.host")
+    url, e := this.url()
+    host := url.Host
     return host, e
+}
+
+func (this *GlobalGitConfig) Scheme() (string, error) {
+    url, e := this.url()
+    scheme := url.Scheme
+    return scheme, e
 }
 
 func (this *GlobalGitConfig) Token() (string, error) {
@@ -41,4 +47,12 @@ func (this *GlobalGitConfig) Token() (string, error) {
 func (this *GlobalGitConfig) ApiPath() (string, error) {
     apiPath := fmt.Sprintf("/api/v3")
     return apiPath, nil
+}
+
+func (this *GlobalGitConfig) url() (*url.URL, error) {
+    path, e := git.ConfigFindGlobal()
+    global, e := git.OpenOndisk(nil, path)
+    part, e := global.LookupString("gitlab.url")
+    url, e := url.Parse(part)
+    return url, e
 }

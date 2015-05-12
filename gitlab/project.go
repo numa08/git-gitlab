@@ -2,6 +2,7 @@ package gitlab
 import (
 	"fmt"
 	"strings"
+	"github.com/numa08/git-gitlab/config"
 )
 
 type Project struct {
@@ -15,7 +16,28 @@ func (this *Project) String() string {
 	return fmt.Sprintf("%s/%s", this.NameSpace, this.Name)
 }
 
-func newProject(name, host, nameSpace, protocol string) *Project {
+func NewProject(config config.GitConfig, remote string) (*Project, error) {
+	parts := strings.Split(remote, ":")
+	if len(parts) < 2 {
+		err := fmt.Errorf("Invalid remote address %s", remote)
+		return nil ,err
+	}
+
+	name := strings.TrimSuffix(parts[len(parts) - 1], ".git")
+	nameSpace := parts[len(parts) - 2]
+	host, err := config.Host()
+	if err != nil {
+		return nil, err
+	}
+	scheme, err := config.Scheme()
+	if err != nil {
+		return nil, err
+	}
+	project := newProject(nameSpace, name, host, scheme)
+	return project, nil
+}
+
+func newProject(nameSpace, name, host, protocol string) *Project {
 	if strings.Contains(nameSpace, "/") {
 		result := strings.SplitN(nameSpace, "/", 2)
 		nameSpace = result[0]

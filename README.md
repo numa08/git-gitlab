@@ -28,20 +28,13 @@ $ git config --global gitlab.token GITLAB_SECRET_TOKEN
 
 then, set gitlab namespace and project.
 
-~~~sh
-$ git config gitlab.project [NAMESPACE]/[PROJECT]
-~~~
-
 ## Commands
 
 ### git clone
 
 ~~~sh
 $ git lab clone numa08/dejiko
-> git clone git://{gitlab.url}/numa08/dejiko
-
-$ git lab clone -p numa08/dejiko
-> git clone git@{gitlab.url}/:numa08/dejiko
+> git clone git://git@gitlab.example/numa08/dejiko
 ~~~
 
 ### merge request

@@ -4,6 +4,7 @@ import (
     "os/exec"
     "strings"
     "fmt"
+    "net/url"
 )
 
 type LocalGitConfig struct {
@@ -22,7 +23,15 @@ func NewLocalGitConfig() (*LocalGitConfig, error) {
 }
 
 func (this *LocalGitConfig) Host() (string, error) {
-    return this.Config.LookupString("gitlab.url")
+    url, e := this.url()
+    host := url.Host
+    return host, e
+}
+
+func (this *LocalGitConfig) Scheme() (string, error) {
+    url, e := this.url()
+    scheme := url.Scheme
+    return scheme, e
 }
 
 func (this *LocalGitConfig) Token() (string, error) {
@@ -32,4 +41,10 @@ func (this *LocalGitConfig) Token() (string, error) {
 func (this *LocalGitConfig) ApiPath() (string, error) {
     apiPath := fmt.Sprintf("/api/v3")
     return apiPath, nil
+}
+
+func (this *LocalGitConfig) url() (*url.URL,error) {
+    part, e := this.Config.LookupString("gitlab.url")
+    url, e := url.Parse(part)
+    return url, e
 }
