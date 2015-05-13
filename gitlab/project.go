@@ -16,26 +16,28 @@ func (this *Project) String() string {
 	return fmt.Sprintf("%s/%s", this.NameSpace, this.Name)
 }
 
-func NewProject(config config.GitConfig, remote string) (*Project, error) {
-	parts := strings.Split(remote, ":")
-	if len(parts) < 2 {
-		err := fmt.Errorf("Invalid remote address %s", remote)
-		return nil ,err
-	}
+func (this *Project) WebURL(path string) string {
+	repoURL := fmt.Sprintf("%s://%s/%s/%s", this.Protocol,this.Host,  this.NameSpace, this.Name)
 
-	name := strings.TrimSuffix(parts[len(parts) - 1], ".git")
-	nameSpace := parts[len(parts) - 2]
-	host, err := config.Host()
-	if err != nil {
-		return nil, err
+	if path == "" {
+		return repoURL
+	} else {
+		return fmt.Sprintf("%s/%s", repoURL, path)
 	}
-	scheme, err := config.Scheme()
-	if err != nil {
-		return nil, err
-	}
-	project := newProject(nameSpace, name, host, scheme)
-	return project, nil
 }
+
+func NewProject(config config.GitConfig, owner string, name string) (*Project, error) {
+	host ,err := config.Host()
+	if err != nil {
+		return nil, err
+	}
+	protocol, err := config.Scheme()
+	if err != nil {
+		return nil, err
+	}
+	return newProject(owner, name, host, protocol), nil
+}
+
 
 func newProject(nameSpace, name, host, protocol string) *Project {
 	if strings.Contains(nameSpace, "/") {

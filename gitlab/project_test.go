@@ -24,9 +24,8 @@ func (this *mockconfig) Scheme() (string, error) {
 }
 
 func TestProject_NewProjectFromURL(t *testing.T) {
-	remote := "git@gitlab.com:numa08/cookbook-gitlab.git"
 	config := &mockconfig{host: "gitlab.com",}
-	project, e := NewProject(config, remote)
+	project, e := NewProject(config, "numa08", "cookbook-gitlab")
 
 	if e != nil {
 		t.Errorf("create project error %s", e)
@@ -48,5 +47,20 @@ func TestProject_NewProjectFromURL(t *testing.T) {
 	}
 	if project.Protocol != "https" {
 		t.Error("actual project protocol is " + project.Protocol + " but expected https")
+	}
+}
+
+func TestWebURL(t *testing.T) {
+	config := &mockconfig{host: "gitlab.com"}
+	project, _ := NewProject(config, "numa08", "cookbook-gitlab")
+
+	repoURL := project.WebURL("")
+	if repoURL != "https://gitlab.com/numa08/cookbook-gitlab" {
+		t.Error("actual repository url is " + repoURL + " but expected is https://gitlab.com/numa08/cookbook-gitlab")
+	}
+
+	wikiURL := project.WebURL("wiki")
+	if wikiURL != "https://gitlab.com/numa08/cookbook-gitlab/wiki" {
+		t.Error("actual wiki url is " + wikiURL + " but expected is https://gitlab.com/numa08/cookbook-gitlab/wiki")
 	}
 }
