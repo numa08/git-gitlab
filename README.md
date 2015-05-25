@@ -14,7 +14,18 @@ $ git clone git://${gitlab.url}/numa08/dejiko.git
 
 ## Installation
 
-TODO
+### Mac OS X
+
+With go-lang already installed:
+
+~~~sh
+$ brew install libgit2
+$ go get gopkg.in/libgit2/git2go.v22
+$ go get github.com/plouc/go-gitlab-client
+$ make build
+~~~
+
+Finally, move `build/git-lab` somewhere in $PATH.
 
 ## Configure
 
