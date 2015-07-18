@@ -28,6 +28,10 @@ $ make build
 
 Finally, move `build/git-lab` somewhere in $PATH.
 
+### Archlinux
+
+There is an aur package called git-gitlab.
+
 ## Configure
 
 Set the value of Gitlab-url and token.
