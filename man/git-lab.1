@@ -1,0 +1,60 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "GIT\-GITLAB" "1" "July 2015" "" ""
+.
+.SH "NAME"
+\fBgit\-gitlab\fR \- gitlab command line interface
+.
+.SH "SYNOPSIS"
+command line tool that wrap git in order to extend it with extra features and commands that make working with GitLab easier\.
+.
+.P
+\fBgit\-lab\fR [global options] command [command options] [arguments\.\.\.]
+.
+.SS "Commands:"
+\fBgit lab clone\fR <namescape/repository> [dir] \fIOPTIONS\fR
+.
+.br
+\fBgit lab merge\-request\fR
+.
+.br
+\fBgit lab merge\fR
+.
+.br
+\fBgit lab show\fR
+.
+.br
+\fBgit lab help\fR
+.
+.SH "DESCRIPTION"
+git\-lab wraps git in order to extend it with extra features and commands that make working with GitLab easier\.
+.
+.TP
+\fBgit lab clone\fR <namescape/repository> [dir]
+Clone the specified repository
+.
+.TP
+\fBgit lab merge\-request\fR [arguments]
+Create merge request
+.
+.TP
+\fBgit lab merge\fR [arguments]
+Merge specified merge request
+.
+.TP
+\fBgit lab show\fR [arguments]
+Show issue, merge request, wiki and repository
+.
+.TP
+\fBgit lab help\fR
+Shows a list of commands or help for one command
+.
+.SH "BUGS"
+\fIhttps://github\.com/numa08/git\-gitlab/issues\fR
+.
+.SH "AUTHORS"
+\fIhttps://github\.com/numa08/git\-gitlab/contributors\fR
+.
+.SH "SEE ALSO"
+git(1), git\-clone(1), git\-merge(1), git\-show(1) \fIhttps://github\.com/numa08/git\-gitlab\fR

@@ -1,0 +1,50 @@
+git-gitlab(1) --  gitlab command line interface 
+============================
+
+## SYNOPSIS
+
+command line tool that wrap git in order to extend it with extra features and commands that make
+working with GitLab easier.
+
+`git-lab` [global options] command [command options] [arguments...]
+
+### Commands:
+
+`git lab clone` <namescape/repository> [dir] <OPTIONS>  
+`git lab merge-request`  
+`git lab merge`  
+`git lab show`  
+`git lab help`  
+
+## DESCRIPTION
+
+git-lab wraps git in order to extend it with extra features and commands that
+make working with GitLab easier.
+
+  * `git lab clone` <namescape/repository> [dir]:
+    Clone the specified repository
+
+  * `git lab merge-request` [arguments]:
+    Create merge request
+
+  * `git lab merge` [arguments]:
+    Merge specified merge request
+
+  * `git lab show` [arguments]:
+    Show issue, merge request, wiki and repository
+
+  * `git lab help`:
+    Shows a list of commands or help for one command
+
+## BUGS
+
+<https://github.com/numa08/git-gitlab/issues>
+
+## AUTHORS
+
+<https://github.com/numa08/git-gitlab/contributors>
+
+## SEE ALSO
+
+git(1), git-clone(1), git-merge(1), git-show(1)
+<https://github.com/numa08/git-gitlab>
