@@ -63,7 +63,7 @@ $ git lab clone -p numa08/dejiko
 ### merge request
 
 ~~~sh
-$ git lab merge-request -b basebranch -h headbranch
+$ git lab merge-request -b basebranch -e headbranch
 >open text editor to edit title and body
 >open pull request on GitLab
 

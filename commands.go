@@ -31,6 +31,18 @@ var command_merge_request = cli.Command{
 	Description: `
 `,
 	Action: do_merge_request,
+	Flags: []cli.Flag{
+		cli.StringFlag{
+			Name: "base, b",
+			Value: "",
+			Usage: "branch for base",
+		},
+		cli.StringFlag{
+			Name: "head, e",
+			Value: "",
+			Usage: "branch for head",
+		},
+	},
 }
 
 var command_merge = cli.Command{
@@ -83,6 +95,10 @@ func do_clone(c *cli.Context) {
 }
 
 func do_merge_request(c *cli.Context) {
+	head := c.String("e")
+	fmt.Println(head)
+	base := c.String("b")
+	fmt.Println(base)
 }
 
 func do_merge(c *cli.Context) {
