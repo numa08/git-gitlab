@@ -13,5 +13,5 @@ install:
     - cmake -DTHREADSAFE=ON -DBUILD_CLAR=OFF -DCMAKE_C_FLAGS=-fPIC -DCMAKE_BUILD_TYPE="RelWithDebInfo" -DCMAKE_INSTALL_PREFIX=/usr/local .. && make && sudo make install
     - sudo ldconfig
     - cd "${TRAVIS_BUILD_DIR}"
-    - go get gopkg.in/libgit2/git2go.v22
+    - go get gopkg.in/libgit2/git2go.v23
     - go get github.com/plouc/go-gitlab-client

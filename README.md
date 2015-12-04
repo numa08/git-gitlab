@@ -20,7 +20,7 @@ With go-lang already installed:
 
 ~~~sh
 $ brew install libgit2
-$ go get gopkg.in/libgit2/git2go.v22
+$ go get gopkg.in/libgit2/git2go.v23
 $ go get github.com/plouc/go-gitlab-client
 $ go get github.com/codegangsta/cli
 $ make build
