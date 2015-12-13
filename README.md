@@ -16,6 +16,12 @@ $ git clone git://${gitlab.url}/numa08/dejiko.git
 
 ### Mac OS X
 
+Install go-lang (if not already installed)
+
+~~~sh
+$ brew install libgit2
+~~~
+
 With go-lang already installed:
 
 ~~~sh
@@ -23,10 +29,32 @@ $ brew install libgit2
 $ go get gopkg.in/libgit2/git2go.v22
 $ go get github.com/plouc/go-gitlab-client
 $ go get github.com/codegangsta/cli
+~~~
+
+Execute from within the git-gitlab repository clone
+
+~~~sh
 $ make build
 ~~~
 
 Finally, move `build/git-lab` somewhere in $PATH.
+
+#### Note
+
+OSX El Capitan users may encounter the following error
+
+~~~sh
+could not determine kind of name for C.GIT_CHECKOUT_SAFE_CREATE
+~~~
+
+when running
+
+~~~sh
+$ go get gopkg.in/libgit2/git2go.v22
+~~~
+
+This is because libgit v0.23.x was installed. You need 0.22.x.
+See https://github.com/libgit2/git2go/issues/181#issuecomment-129849557 for more information.
 
 ### Archlinux
 
