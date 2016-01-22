@@ -19,10 +19,10 @@ $ git clone git://${gitlab.url}/numa08/dejiko.git
 Install go-lang (if not already installed)
 
 ~~~sh
-$ brew install libgit2
+$ brew install go
 ~~~
 
-With go-lang already installed:
+When go-lang is installed:
 
 ~~~sh
 $ brew install libgit2
