@@ -16,3 +16,4 @@ cd $ROCKET_WORKSPACE
 go get gopkg.in/libgit2/git2go.v24
 go get github.com/plouc/go-gitlab-client
 make build
+cp -r build/ $ROCKET_ARTIFACTS
