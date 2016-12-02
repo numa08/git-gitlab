@@ -3,6 +3,7 @@ version: 0.1
 phases:
   install:
     commands:
+      - sudo apt-get install cmake -y      
       - go get github.com/codegangsta/cli
       - cd "${HOME}"
       - wget -O libgit2-0.24.1.tar.gz https://github.com/libgit2/libgit2/archive/v0.24.1.tar.gz
