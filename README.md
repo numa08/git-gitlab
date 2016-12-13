@@ -22,10 +22,31 @@ Install go-lang (if not already installed)
 $ brew install go
 ~~~
 
-When go-lang is installed:
+If go-lang is installed, install libgit2
 
 ~~~sh
 $ brew install libgit2
+~~~
+
+### Fedora
+
+Install go-lang (if not already installed)
+
+~~~sh
+$ yum install go
+~~~
+
+If go-lang is installed, install libgit2-devel
+
+~~~sh
+$ yum install libgit2-devel
+~~~
+
+### Final steps
+
+Install the required go packages
+
+~~~sh
 $ go get gopkg.in/libgit2/git2go.v23
 $ go get github.com/plouc/go-gitlab-client
 $ go get github.com/codegangsta/cli
