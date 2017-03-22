@@ -15,7 +15,7 @@ Ruby関連のツールをインストールして、次のコマンドを実行�
 次のようにGitの設定を行います
 
 	git config --global gitlab.url http://gitlab.example.com/
-	git config --glolab gitlab.token GITLAB_SECRET_TOKEN
+	git config --global gitlab.token GITLAB_SECRET_TOKEN
 	git config gitlab.project NAMESPACE/PROJECT
 
 もしもGitlabのリモートリポジトリがoriginでない場合には
