@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gopkg.in/libgit2/git2go.v24"
+	"gopkg.in/libgit2/git2go.v26"
 	"os/exec"
 	"strings"
 )
